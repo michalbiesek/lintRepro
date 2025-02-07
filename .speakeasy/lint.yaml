@@ -1,0 +1,11 @@
+lintVersion: 1.0.0
+defaultRuleset: speakeasy-generation
+rulesets:
+  fooRule:
+    rulesets:
+      - speakeasy-generation
+      - speakeasy-openapi
+    rules:
+      missing-examples: {
+        severity: warn,
+      }

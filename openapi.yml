@@ -1,0 +1,42 @@
+openapi: 3.0.5
+info:
+  title: "GET foo bar"
+  description: |
+    Demonstrates how to define a GET request.
+  version: "1.0.0"
+
+servers:
+  - url: "https://api.myserver.com"
+
+x-speakeasy-retries:
+  strategy: backoff
+  backoff:
+    initialInterval: 500 # 500 milliseconds
+    maxInterval: 60000 # 60 seconds
+    maxElapsedTime: 3600000 # 5 minutes
+    exponent: 1.5
+  statusCodes:
+    - 5XX
+  retryConnectionErrors: true
+
+paths:
+  /some-endpoint:
+    get:
+      operationId: getSomeEndpoint
+      summary: "Example GET request"
+      description: "This endpoint processes a GET request."
+      responses:
+        '200':
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Request was processed successfully."
+        '400':
+          description: "Bad request"
+        '500':
+          description: "Internal server error"
