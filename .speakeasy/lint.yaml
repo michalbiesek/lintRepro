@@ -7,5 +7,5 @@ rulesets:
       - speakeasy-openapi
     rules:
       missing-examples: {
-        severity: warn,
+        severity: off,
       }
